@@ -12,15 +12,9 @@ public class Coordinates {
         height = p_height;
     }
 
-    public int getLongitude(){
-        return longitude;
-    }
-        
-    public int getLatitude(){
-        return latitude;
-    }
-        
-    public int getHeight(){
-        return height;
-    }
+    public int getLongitude(){ return longitude; }
+
+    public int getLatitude(){ return latitude; }
+    
+    public int getHeight(){ return height; }
 } 
