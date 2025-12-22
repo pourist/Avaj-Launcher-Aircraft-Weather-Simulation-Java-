@@ -12,12 +12,12 @@ public abstract class Tower {
         observers = new ArrayList<>();
     }
 
-    public abstract void register(Flyable p_flyable);
+    public void register(Flyable p_flyable) { observers.add(p_flyable); }
 
-    public abstract  void unregister(Flyable p_flyable);
+    public void unregister(Flyable p_flyable) { observers.remove(p_flyable); }
 
-    protected abstract void conditionChanged();
+    protected void conditionChanged() {
+        //implement
+    }
 
-    protected void addObserver(Flyable f) { observers.add(f); }
-    protected void removeObserver(Flyable f) { observers.remove(f); }
 }
