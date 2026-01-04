@@ -1,7 +1,7 @@
 package ro.academyplus.avaj.aircraft;
 
-import ro.academyplus.avaj.weather.Coordinates;
 import ro.academyplus.avaj.tower.WeatherTower;
+import ro.academyplus.avaj.weather.Coordinates;
 
 
 public abstract class Aircraft implements Flyable {
@@ -18,7 +18,7 @@ public abstract class Aircraft implements Flyable {
 	}
 
 	@Override
-	public void	registerTower(final WeatherTower p_tower){
+	public void	registerTower(WeatherTower p_tower){
 		weatherTower = p_tower;
 		weatherTower.register(this);
 	}

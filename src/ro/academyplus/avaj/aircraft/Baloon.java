@@ -3,19 +3,18 @@ package ro.academyplus.avaj.aircraft;
 import ro.academyplus.avaj.utils.Logger;
 import ro.academyplus.avaj.weather.Coordinates;
 
-public class Helicopter extends Aircraft {
+public class Baloon extends Aircraft {
 
     private static final int MAX_HEIGHT = 100;
 
-    private static final int SUN_LONGITUDE_INCREASE  = 10;
-    private static final int SUN_HEIGHT_INCREASE     = 2;
+    private static final int SUN_LONGITUDE_INCREASE = 2;
+    private static final int SUN_HEIGHT_INCREASE    = 4;
 
-    private static final int RAIN_LONGITUDE_INCREASE = 5;
-    private static final int FOG_LONGITUDE_INCREASE  = 1;
+    private static final int RAIN_HEIGHT_DECREASE   = 5;
+    private static final int FOG_HEIGHT_DECREASE    = 3;
+    private static final int SNOW_HEIGHT_DECREASE   = 15;
 
-    private static final int SNOW_HEIGHT_DECREASE    = 12;
-
-    public Helicopter(long p_id, String p_name, Coordinates p_coordinate) {
+    public Baloon(long p_id, String p_name, Coordinates p_coordinate) {
         super(p_id, p_name, p_coordinate);
     }
 
@@ -31,16 +30,26 @@ public class Helicopter extends Aircraft {
             case "SUN":
                 longitude += SUN_LONGITUDE_INCREASE;
                 height = Math.min(MAX_HEIGHT, height + SUN_HEIGHT_INCREASE);
-                Logger.log(this + ": This is hot.");
+                Logger.log(this + ": Let's enjoy the good weather and take some pics.");
                 break;
 
             case "RAIN":
-                longitude += RAIN_LONGITUDE_INCREASE;
-                Logger.log(this + ": It's raining. Better watch out for lightings.");
+                height -= RAIN_HEIGHT_DECREASE;
+                if (height <= 0) {
+                    Logger.log(this + " landing.");
+                    weatherTower.unregisterAircraft(this);
+                    return;
+                }
+                Logger.log(this + ": Damn you rain! You messed up my Baloon.");
                 break;
 
             case "FOG":
-                longitude += FOG_LONGITUDE_INCREASE;
+                height -= FOG_HEIGHT_DECREASE;
+                if (height <= 0) {
+                    Logger.log(this + " landing.");
+                    weatherTower.unregisterAircraft(this);
+                    return;
+                }
                 Logger.log(this + ": Can't see anything.");
                 break;
 
@@ -51,7 +60,7 @@ public class Helicopter extends Aircraft {
                     weatherTower.unregisterAircraft(this);
                     return;
                 }
-                Logger.log(this + ": My rotor is going to freeze!");
+                Logger.log(this + ": It's snowing. We're gonna crash.");
                 break;
         }
 
@@ -60,6 +69,6 @@ public class Helicopter extends Aircraft {
 
     @Override
     public String toString() {
-        return "Helicopter#" + name + "(" + id + ")";
+        return "Baloon#" + name + "(" + id + ")";
     }
 }

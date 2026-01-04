@@ -15,6 +15,18 @@ public class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates p_coordinates) {
-        return null; // implement later
+        int weatherScore = (p_coordinates.getHeight() + 
+          p_coordinates.getLatitude() + p_coordinates.getLongitude()) % 4;
+
+        switch (weatherScore) {
+            case 0 :
+                return "RAIN";
+            case 1 :
+                return "FOG";
+            case 2 :
+                return "SUN";
+            default:
+                return "SNOW";
+        }
     }
 }

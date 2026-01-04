@@ -1,28 +1,31 @@
 package ro.academyplus.avaj.tower;
 
 import ro.academyplus.avaj.aircraft.Flyable;
+import ro.academyplus.avaj.utils.Logger;
+import ro.academyplus.avaj.weather.Coordinates;
+import ro.academyplus.avaj.weather.WeatherProvider;
 
 
 public class WeatherTower extends Tower {
 
-    public WeatherTower() {
-        super();
+    public void registerAircraft(Flyable p_flyable) {
+        super.register(p_flyable);
+        Logger.log("Tower says: " + p_flyable.toString() + 
+         " registered to weather tower.");
     }
 
-    @Override
-    public void register(Flyable p_flyable) {
-        super.addObserver(p_flyable);
-        //print to file
+    public void unregisterAircraft(Flyable p_flyable) {
+        super.unregister(p_flyable);
+        Logger.log("Tower says: " + p_flyable.toString() + 
+         " unregistered from weather tower.");
     }
 
-    @Override
-    public void unregister(Flyable p_flyable) {
-        super.removeObserver(p_flyable);
-        //print to file
+    public String getWeather(Coordinates p_coordinates) {
+        return WeatherProvider.getInstance()
+                .getCurrentWeather(p_coordinates);
     }
 
-    @Override
-    protected void conditionChanged() {
-
+    public void changeWeather() {
+        super.conditionChanged();
     }
 }
