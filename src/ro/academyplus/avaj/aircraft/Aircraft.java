@@ -20,6 +20,6 @@ public abstract class Aircraft implements Flyable {
 	@Override
 	public void	registerTower(WeatherTower p_tower){
 		weatherTower = p_tower;
-		weatherTower.register(this);
+		weatherTower.registerAircraft(this);
 	}
 }

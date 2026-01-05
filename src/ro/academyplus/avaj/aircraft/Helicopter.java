@@ -46,12 +46,12 @@ public class Helicopter extends Aircraft {
 
             case "SNOW":
                 height -= SNOW_HEIGHT_DECREASE;
+                Logger.log(this + ": My rotor is going to freeze!");
                 if (height <= 0) {
-                    Logger.log(this + " landing.");
+                    Logger.log(this + " landing. height:");
                     weatherTower.unregisterAircraft(this);
                     return;
                 }
-                Logger.log(this + ": My rotor is going to freeze!");
                 break;
         }
 

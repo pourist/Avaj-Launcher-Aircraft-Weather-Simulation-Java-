@@ -46,12 +46,12 @@ public class JetPlane extends Aircraft {
 
             case "SNOW":
                 height -= SNOW_HEIGHT_DECREASE;
+                Logger.log(this + ": OMG! Winter is coming!");
                 if (height <= 0) {
                     Logger.log(this + " landing.");
                     weatherTower.unregisterAircraft(this);
                     return;
                 }
-                Logger.log(this + ": OMG! Winter is coming!");
                 break;
         }
 

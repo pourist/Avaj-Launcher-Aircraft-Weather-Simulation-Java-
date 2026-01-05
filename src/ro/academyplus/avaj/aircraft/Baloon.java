@@ -54,13 +54,13 @@ public class Baloon extends Aircraft {
                 break;
 
             case "SNOW":
+                Logger.log(this + ": It's snowing. We're gonna crash.");
                 height -= SNOW_HEIGHT_DECREASE;
                 if (height <= 0) {
                     Logger.log(this + " landing.");
                     weatherTower.unregisterAircraft(this);
                     return;
                 }
-                Logger.log(this + ": It's snowing. We're gonna crash.");
                 break;
         }
 

@@ -83,7 +83,6 @@ public class Simulator {
 
             Flyable aircraft =
                     factory.newAircraft(parts[0], parts[1], coordinates);
-
             aircraft.registerTower(weatherTower);
         }
 
